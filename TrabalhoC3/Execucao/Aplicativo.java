@@ -195,8 +195,6 @@ public class Aplicativo extends javax.swing.JFrame {
         String CPF = CPFTextField.getText();
 
         DefaultTableModel tabela = (DefaultTableModel) TableDados.getModel();
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-
         
         tabela.getDataVector().removeAllElements();
         
