@@ -7,12 +7,9 @@ package TrabalhoC3.Execucao;
 import java.util.ArrayList;
 import TrabalhoC3.Classes.*;
 import java.text.SimpleDateFormat;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Gabriel
- */
 public class Aplicativo extends javax.swing.JFrame {
 
     /**
@@ -105,8 +102,16 @@ public class Aplicativo extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.Long.class, java.lang.String.class, java.lang.Double.class
             };
 
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         SPDados.setViewportView(TableDados);
@@ -190,7 +195,11 @@ public class Aplicativo extends javax.swing.JFrame {
         String CPF = CPFTextField.getText();
 
         DefaultTableModel tabela = (DefaultTableModel) TableDados.getModel();
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+
+        
         tabela.getDataVector().removeAllElements();
+        
         tabela.fireTableDataChanged();
 
         try {
@@ -236,24 +245,19 @@ public class Aplicativo extends javax.swing.JFrame {
         switch (escolha) {
 
             case "Árvore ABB":
-                    System.out.print("\nOpção 01");
                     tipoPesquisa = 1;
                 break;
 
             case "Árvore AVL":
-                    System.out.print("\nOpção 02");
                     tipoPesquisa = 2;
                 break;
 
             case "Lista Hash":
-                    System.out.print("\nOpção 03");
                     tipoPesquisa = 3;
                 break;
 
             default:
         }
-
-        //escolhaPesquisa();
     }//GEN-LAST:event_MetodoDePesquisaBoxActionPerformed
 
     private void ArquivoBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArquivoBoxActionPerformed
@@ -263,194 +267,92 @@ public class Aplicativo extends javax.swing.JFrame {
         switch (escolha) {
 
             case "500 Elementos Aleatórios":
-                    System.out.print("\nOpção 01");
                     quantidadeDados = 1;
                 break;
 
             case "500 Elementos Invertidos":
-                    System.out.print("\nOpção 02");
                     quantidadeDados = 2;
                 break;
 
             case "500 Elementos Ordenados":
-                    System.out.print("\nOpção 03");
                     quantidadeDados = 3;
                 break;
             
              case "1000 Elementos Aleatórios":
-                    System.out.print("\nOpção 04");
                     quantidadeDados = 4;
                 break;
 
             case "1000 Elementos Invertidos":
-                    System.out.print("\nOpção 05");
                     quantidadeDados = 5;
                 break;
 
             case "1000 Elementos Ordenados":
-                    System.out.print("\nOpção 06");
                     quantidadeDados = 6;
                 break;
             
             case "5000 Elementos Aleatórios":
-                    System.out.print("\nOpção 07");
                     quantidadeDados = 7;
                 break;
 
             case "5000 Elementos Invertidos":
-                    System.out.print("\nOpção 08");
                     quantidadeDados = 8;
                 break;
 
             case "5000 Elementos Ordenados":
-                    System.out.print("\nOpção 09");
                     quantidadeDados = 9;
                 break;
             
             case "10000 Elementos Aleatórios":
-                    System.out.print("\nOpção 10");
                     quantidadeDados = 10;
                 break;
 
             case "10000 Elementos Invertidos":
-                    System.out.print("\nOpção 11");
                     quantidadeDados = 11;
                 break;
 
             case "10000 Elementos Ordenados":
-                    System.out.print("\nOpção 12");
                     quantidadeDados = 12;
                 break;
                 
             case "50000 Elementos Aleatórios":
-                    System.out.print("\nOpção 13");
                     quantidadeDados = 13;
                 break;
 
             case "50000 Elementos Invertidos":
-                    System.out.print("\nOpção 14");
                     quantidadeDados = 14;
                 break;
 
             case "50000 Elementos Ordenados":
-                    System.out.print("\nOpção 15");
                     quantidadeDados = 15;
                 break;
             
             default:
         }
 
-        //escolhaPesquisa();
     }//GEN-LAST:event_ArquivoBoxActionPerformed
-
-    /*private void adicionarTabela() {
-
-        String nome = "Gabriel", data = "01/01/2000";   
-        long cpf = 5;
-        double valor = 50;
-
-        DefaultTableModel test = (DefaultTableModel) TableDados.getModel();
-        test.setNumRows(0);
-        test.addRow(new Object[] {nome, cpf, data, valor});
-    }
-
-    private void escolhaPesquisa () {
-
-        ArrayList<Compra> retornoCompras = new ArrayList<>();
-
-        switch (tipoPesquisa) {
-
-            case 1://ABB
-                
-                
-                switch (quantidadeDados) {
-
-                    case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15:
-                            retornoCompras = ExecutarPesquisas.pesquisaABB(quantidadeDados);
-                            tabelaDados(retornoCompras);
-                        break;
-                    
-                    default:
-                }
-
-
-                switch (quantidadeDados) {
-                        
-                    case 1:
-                        
-                        adicionarTabela();
-                        System.out.print("\nMétodo Árvore ABB e Base 500 Ordenados");                     
-                        break;
-
-                    default:
-                }
-
-                break;
-
-            case 2://AVL
-                    switch (quantidadeDados) {
-
-                        case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15:
-                            retornoCompras = ExecutarPesquisas.pesquisaAVL(quantidadeDados);
-                            tabelaDados(retornoCompras);
-                            break;
-
-                        default:
-                    }
-                break;
-
-            case 3://Lista Hash
-                    switch (quantidadeDados) {
-
-                        case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15:
-                                retornoCompras = ExecutarPesquisas.pesquisaHash(quantidadeDados);
-                                tabelaDados(retornoCompras);
-                            break;
-                        
-                        default:
-                    }
-                break;
-            
-            default:
-        }
-    }*/
 
 
     private void tabelaDados (ArrayList<Compra> retornoCompras) {
+   
+        String nome = "", data = "";   
+        long cpf = 0;
+        double valor = 0;
+        SimpleDateFormat dataSimples = new SimpleDateFormat("dd/MM/yyyy");
+        DefaultTableModel tabela = (DefaultTableModel) TableDados.getModel();
+        tabela.setNumRows(0);
 
-        /*
-            DefaultTableModel test = (DefaultTableModel) TableDados.getModel();
-            test.setNumRows(0);
-            test.addRow(new Object[] {nome, cpf, data, valor});
-        */
 
-        //tabela.setNumRows(retornoCompras.size());
-            
-            String nome = "", data = "";   
-            long cpf = 0;
-            double valor = 0;
-            SimpleDateFormat dataSimples = new SimpleDateFormat("dd/MM/yyyy");
-            DefaultTableModel tabela = (DefaultTableModel) TableDados.getModel();
-            tabela.setNumRows(0);
+            for (int contador = 0; contador < retornoCompras.size(); contador++) {
 
-            //if (retornoCompras.size() > 0) {
+                nome = retornoCompras.get(contador).getCliente().getNome();
+                data = dataSimples.format(retornoCompras.get(contador).getData().getTime());
+                cpf = retornoCompras.get(contador).getCliente().getCPF();
+                valor = retornoCompras.get(contador).getValor();
 
-                for (int contador = 0; contador < retornoCompras.size(); contador++) {
-
-                    nome = retornoCompras.get(contador).getCliente().getNome();
-                    data = dataSimples.format(retornoCompras.get(contador).getData().getTime());
-                    cpf = retornoCompras.get(contador).getCliente().getCPF();
-                    valor = retornoCompras.get(contador).getValor();
-
-                    tabela.addRow(new Object[] {nome, cpf, data, valor});
+                tabela.addRow(new Object[] {nome, cpf, data, valor});
+                    
                 }
-            
-            /*} else {
-
-                tabela.getDataVector().removeAllElements();
-                tabela.fireTableDataChanged();
-            }*/
-    }
+            }
 
     /**
      * @param args the command line arguments

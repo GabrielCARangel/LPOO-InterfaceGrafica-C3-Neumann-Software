@@ -247,7 +247,6 @@ public class ExecutarPesquisas {
         ArrayList<Compra> listaAuxiliar = new ArrayList<>();
         ArrayList<Compra> retornoPesquisa = new ArrayList<>();
         long cpfPesquisar = Long.parseLong(CPFPesquisar);
-        //String cpfLista;
 
         switch (tipoArquivo) {
 
@@ -271,17 +270,6 @@ public class ExecutarPesquisas {
                 retornoPesquisa.add(listaAuxiliar.get(contador));
             }
         }
-
-        /*for (int contador = 0; contador < listaAuxiliar.size(); contador++) {
-            
-            cpfLista = String. listaAuxiliar.get(contador).getCliente().getCPF();
-
-            if (cpfLista.contentEquals(CPFPesquisar)) {
-                
-                retornoPesquisa.add(listaAuxiliar.get(contador));
-            }
-        }*/
-
         return retornoPesquisa;
     }
 }
