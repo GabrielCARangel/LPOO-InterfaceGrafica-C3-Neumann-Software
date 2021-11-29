@@ -29,22 +29,14 @@ public class ExecutarPesquisas {
             
             noPesquisa = arvoreBalanceada.pesquisarABB(listaCPFs.get(contadorPesquisa));
 
-            try {
-
-                if (noPesquisa.getInformacao().get(0).getCliente().getCPF() == listaCPFs.get(contadorPesquisa)) {
+            if(noPesquisa != null) {
 
                     for (int contadorLista = 0; contadorLista < noPesquisa.getInformacao().size(); contadorLista++) {
 
                         retornoPesquisa.add(noPesquisa.getInformacao().get(contadorLista));
-                    }
+                    } 
                 }
-            
-            } catch (Exception erro) {
-                
-            }
-
-        }
-            
+            }        
         return retornoPesquisa;
     }
 
@@ -91,7 +83,7 @@ public class ExecutarPesquisas {
         
             ArrayList <Compra> pesquisaHash = listaHash.pesquisarCPF(listaCPFs.get(contadorPesquisa));
             
-            if (pesquisaHash != null) {
+            if (pesquisaHash.isEmpty() == false) {
             
                 for (int contadorLista = 0; contadorLista < pesquisaHash.size(); contadorLista++) {
 
