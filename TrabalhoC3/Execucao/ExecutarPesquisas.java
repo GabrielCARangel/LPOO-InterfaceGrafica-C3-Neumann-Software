@@ -29,14 +29,15 @@ public class ExecutarPesquisas {
             
             noPesquisa = arvoreBalanceada.pesquisarABB(listaCPFs.get(contadorPesquisa));
 
-            if(noPesquisa != null) {
+            if (noPesquisa != null) {
 
                     for (int contadorLista = 0; contadorLista < noPesquisa.getInformacao().size(); contadorLista++) {
 
                         retornoPesquisa.add(noPesquisa.getInformacao().get(contadorLista));
                     } 
                 }
-            }        
+            }
+
         return retornoPesquisa;
     }
 
@@ -262,6 +263,8 @@ public class ExecutarPesquisas {
                 retornoPesquisa.add(listaAuxiliar.get(contador));
             }
         }
+        
         return retornoPesquisa;
     }
+
 }
